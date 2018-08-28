@@ -754,7 +754,24 @@ run_menu (grub_menu_t menu, int nested, int *auto_boot)
 		current_entry = menu->size - 1;
 	      menu_set_chosen_entry (current_entry);
 	      break;
-
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+		  c -= 49;
+		  if(c < menu->size && c >= 0)
+		  {
+		    current_entry = c;
+			menu_fini();
+			*auto_boot = 0;
+			return current_entry;
+		  }
+	  	  break;
 	    case '\n':
 	    case '\r':
 	    case GRUB_TERM_KEY_RIGHT:
